@@ -39,7 +39,7 @@ const getAllMyPokemon = async () => {
 }
 
 const addToMyPokemon = async (id_pokemons, id_user) =>{
-    const [result] = await db.execute('INSERT INTO my_pokemons (id_pokemons, id_user) VALUES (?, ?)', [type, level]);
+    const [result] = await dbPool.execute('INSERT INTO my_pokemons (id_pokemons, id_user) VALUES (?, ?)', [this.id_pokemons, this.id_user]);
     const id = result.insertId;
     return { id, id_pokemons, id_user };
 }
