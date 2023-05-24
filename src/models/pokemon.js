@@ -44,6 +44,11 @@ const addToMyPokemon = async (id_pokemons, id_user) =>{
     return { id, id_pokemons, id_user };
 }
 
+const deleteMyPokemon = async (id) =>{
+    const sqlQuery = `DELETE FROM my_pokemons where id = ${id}`
+    return dbPool.execute(sqlQuery);
+}
+
 module.exports = {
     getAllPokemon,
     getDetailPokemon,
@@ -53,4 +58,5 @@ module.exports = {
     //MyPokemon
     getAllMyPokemon,
     addToMyPokemon,
+    deleteMyPokemon
 }
