@@ -9,7 +9,7 @@ router.post('/collection',);
 
 //READ --> GET
 router.get('/', pokemonController.getAllPokemons);
-router.get('/collection',);
+router.get('/collection',pokemonController.getAllMyPokemons);
 
 //READ --> GET Detail
 router.get('/:id', pokemonController.getDetailPokemons);
