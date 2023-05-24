@@ -103,10 +103,31 @@ const deletePokemons = async (req, res) => {
     }
 }
 
+
+//Section for My Pokemon Collection
+
+const getAllMyPokemons =  async (req, res) =>{
+    try {
+        const [data] = await pokemonModels.getAllMyPokemon();
+        // console.log("test", data);
+        res.json({
+            message: 'GET All My pokemons Success',
+            data: data
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Server Error',
+            error: error.message
+        });
+    }
+} 
+
 module.exports = {
     getAllPokemons,
     getDetailPokemons,
     createNewPokemons,
     updatePokemons,
-    deletePokemons
+    deletePokemons,
+    // My Pokemon
+    getAllMyPokemons
 };
