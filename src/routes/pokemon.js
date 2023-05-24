@@ -5,9 +5,11 @@ const router = express.Router();
 
 //Create --> POST
 router.post('/', pokemonController.createNewPokemons);
+router.post('/collection',);
 
 //READ --> GET
 router.get('/', pokemonController.getAllPokemons);
+router.get('/collection',);
 
 //READ --> GET Detail
 router.get('/:id', pokemonController.getDetailPokemons);
@@ -17,6 +19,7 @@ router.put('/:id', pokemonController.updatePokemons);
 
 //DELETE --> DELETE
 router.delete('/:id', pokemonController.deletePokemons);
+router.delete('/collection/:id',);
 
 
 
