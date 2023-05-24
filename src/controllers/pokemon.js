@@ -123,19 +123,18 @@ const getAllMyPokemons =  async (req, res) =>{
 } 
 
 const addToMyPokemons = async (req, res) =>{
+    const { id_pokemons, id_user } = req.body;
+
     try {
-        const [data] = await pokemonModels.addToMyPokemon();
-        // console.log("test", data);
-        res.json({
-            message: 'Add To My pokemons Success',
-            data: data
-        });
-    } catch (error) {
-        res.status(500).json({
-            message: 'Server Error',
-            error: error.message
-        });
-    }
+      const pokemon = await pokemonModels.addToMyPokemon(id_pokemons, id_user);
+      res.json({
+        message: 'Add To My Pokemons Success',
+        data: pokemon
+      });
+    } catch(error) {
+      console.error('Error creating Pokemon', error);
+      res.status(500).json({ error: 'Error creating Pokemon' });
+      }
 }
 
 module.exports = {
