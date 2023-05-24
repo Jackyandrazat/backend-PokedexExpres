@@ -5,7 +5,7 @@ const router = express.Router();
 
 //Create --> POST
 router.post('/', pokemonController.createNewPokemons);
-router.post('/collection',);
+router.post('/collection',pokemonController.addToMyPokemons);
 
 //READ --> GET
 router.get('/', pokemonController.getAllPokemons);
