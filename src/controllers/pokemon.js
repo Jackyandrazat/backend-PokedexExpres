@@ -137,6 +137,22 @@ const addToMyPokemons = async (req, res) =>{
       }
 }
 
+const deleteMyPokemons = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await pokemonModels.deleteMyPokemon(id);
+        res.json({
+            message: 'Delete Pokemon Success',
+            data: null
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Server Error',
+            error: error.message
+        });
+    }
+}
+
 module.exports = {
     getAllPokemons,
     getDetailPokemons,
@@ -145,5 +161,6 @@ module.exports = {
     deletePokemons,
     // My Pokemon
     getAllMyPokemons,
-    addToMyPokemons
+    addToMyPokemons,
+    deleteMyPokemons
 };
