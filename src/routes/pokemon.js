@@ -19,7 +19,7 @@ router.put('/:id', pokemonController.updatePokemons);
 
 //DELETE --> DELETE
 router.delete('/:id', pokemonController.deletePokemons);
-router.delete('/collection/:id',);
+router.delete('/collection/:id',pokemonController.deleteMyPokemons);
 
 
 
