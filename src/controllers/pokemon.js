@@ -126,6 +126,10 @@ const addToMyPokemons = async (req, res) =>{
     const { id_pokemons, id_user } = req.body;
 
     try {
+      const userExists = await pokemonModels.findAddMypokemon(id_pokemons);
+        if (userExists) {
+        return res.status(409).json({ error: 'Pokemons already exists' });
+        }
       const pokemon = await pokemonModels.addToMyPokemon(id_pokemons, id_user);
       res.json({
         message: 'Add To My Pokemons Success',
