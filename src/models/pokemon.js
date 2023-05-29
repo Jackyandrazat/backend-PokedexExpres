@@ -11,8 +11,8 @@ const getDetailPokemon = async (id) => {
 }
 
 const createNewPokemon = async (body) => {
-    const sqlQuery = `INSERT INTO pokemons (name_pokemon, type_pokemon, ability_pokemon, desckripsi_pokemon) 
-                        VALUES ('${body.name_pokemon}','${body.type_pokemon}','${body.ability_pokemon}','${body.desckripsi_pokemon}')`
+    const sqlQuery = `INSERT INTO pokemons (name_pokemon, type_pokemon, ability_pokemon, desckripsi_pokemon, avatar_url) 
+                        VALUES ('${body.name_pokemon}','${body.type_pokemon}','${body.ability_pokemon}','${body.desckripsi_pokemon}','${body.avatar_url}')`
     
         return dbPool.execute(sqlQuery)
 }
