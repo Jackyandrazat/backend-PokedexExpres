@@ -32,7 +32,9 @@ const loginUsers = async (req, res) => {
     const token = jwt.sign({ userId: user.id }, 'secret-key', { expiresIn: '1h' });
 
     // Kirim token sebagai respons
-    res.json({ token });
+    res.json({ token,
+      id: user.id,
+    });
   } catch (err) {
     console.error('Terjadi kesalahan saat melakukan login:', err);
     res.status(500).json({ message: 'Terjadi kesalahan saat melakukan login' });
