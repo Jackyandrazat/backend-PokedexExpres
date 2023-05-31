@@ -34,7 +34,8 @@ const deletePokemon = async (id) => {
 // Section for Collection My Pokemon
 
 const getAllMyPokemon = async () => {
-    const sqlQuery = 'SELECT * FROM my_pokemons'
+    const sqlQuery = `SELECT my_pokemons.id, pokemons.id pokemons_id , pokemons.name_pokemon, pokemons.type_pokemon, pokemons.ability_pokemon, pokemons.desckripsi_pokemon, 
+    pokemons.avatar_url FROM my_pokemons JOIN pokemons ON my_pokemons.id_pokemons = pokemons.id`
     return dbPool.execute(sqlQuery);
 }
 
