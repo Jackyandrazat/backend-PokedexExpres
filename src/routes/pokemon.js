@@ -1,15 +1,20 @@
 const express = require('express');
 const pokemonController = require('../controllers/pokemon.js');
 
+// const auth = require('../middleware/authMiddleware.js');
+const authenticateToken = require('../middleware/authMiddleware');
+
+
 const router = express.Router();
 
 //Create --> POST
-router.post('/', pokemonController.createNewPokemons);
-router.post('/collection',pokemonController.addToMyPokemons);
+router.post('/', authenticateToken, pokemonController.createNewPokemons);
+router.post('/collection', authenticateToken, pokemonController.addToMyPokemons);
 
 //READ --> GET
-router.get('/', pokemonController.getAllPokemons);
-router.get('/collection',pokemonController.getAllMyPokemons);
+router.get('/', authenticateToken, pokemonController.getAllPokemons);
+// router.get('/collection',pokemonController.getAllMyPokemons);
+router.get('/collection',authenticateToken, pokemonController.getAllPokemonsIdUser);
 
 //READ --> GET Detail
 router.get('/:id', pokemonController.getDetailPokemons);
