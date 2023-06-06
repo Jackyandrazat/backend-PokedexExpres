@@ -151,7 +151,7 @@ const addToMyPokemons = async (req, res) =>{
     const user = req.user
     console.log(user, 'sdasdsa')
     try {
-      const userExists = await pokemonModels.findAddMypokemon(id_pokemons);
+      const userExists = await pokemonModels.findAddMypokemon(id_pokemons, user);
         if (userExists) {
         return res.status(409).json({ error: 'Pokemons already exists' });
         }
@@ -164,21 +164,6 @@ const addToMyPokemons = async (req, res) =>{
       console.error('Error creating Pokemon', error);
       res.status(500).json({ error: 'Error creating Pokemon' });
       }
-}
-
-const findAddMypokemon = async (req, res) => {
-    const { id_user } = req.body
-    try {
-        const userExists = await pokemonModels.findAddMypokemon(id_user);
-        if (userExists) {
-        return res.status(409).json({ error: 'Pokemons already exists' });
-        }
-        
-    } catch (error) {
-        console.error('Error creating Pokemon', error);
-        res.status(500).json({ error: 'Error creating Pokemon' });
-        
-    }
 }
 
 const deleteMyPokemons = async (req, res) => {
@@ -207,7 +192,7 @@ module.exports = {
     getAllMyPokemons,
     addToMyPokemons,
     deleteMyPokemons,
-    findAddMypokemon,
+    // findAddMypokemon,
     getAllPokemonsIdUser
 
 };
