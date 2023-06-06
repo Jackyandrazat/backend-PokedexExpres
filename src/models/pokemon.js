@@ -62,8 +62,8 @@ const deleteMyPokemon = async (id) =>{
     return dbPool.execute(sqlQuery);
 }
 
-const findAddMypokemon = async (id_pokemons) => {
-    const [rows] = await dbPool.execute('SELECT * FROM my_pokemons WHERE id_pokemons = ?', [id_pokemons]);
+const findAddMypokemon = async (id_pokemons,userId) => {
+    const [rows] = await dbPool.execute('SELECT * FROM my_pokemons WHERE id_pokemons = ? AND id_user = ?', [id_pokemons,userId]);
     return rows[0];
 }
 
