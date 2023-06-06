@@ -17,6 +17,30 @@ const getAllPokemons =  async (req, res) =>{
     }
 }
 
+const getAllPokemonsIdUser =  async (req, res) =>{
+    // const {id_user} = req.params;
+    const user = req.user;
+    // console.log(req.user, 'data user')
+    try {
+        const [viewPokemonByid] = await pokemonModels.getMyPokemonById(user.userId);
+        if (viewPokemonByid) {
+            res.json({
+              message: 'GET Pokemon by ID Success',
+              data: viewPokemonByid
+            });
+          } else {
+            res.status(404).json({
+              message: 'Pokemon not found'
+            });
+          }
+    } catch (error) {
+        res.status(500).json({
+            message: 'Server Error',
+            error: error.message
+        });
+    }  
+}
+
 const getDetailPokemons = async (req, res) => {
     const {id} = req.params;
     try {
@@ -123,14 +147,15 @@ const getAllMyPokemons =  async (req, res) =>{
 } 
 
 const addToMyPokemons = async (req, res) =>{
-    const { id_pokemons, id_user } = req.body;
-
+    const { id_pokemons } = req.body;
+    const user = req.user
+    console.log(user, 'sdasdsa')
     try {
       const userExists = await pokemonModels.findAddMypokemon(id_pokemons);
         if (userExists) {
         return res.status(409).json({ error: 'Pokemons already exists' });
         }
-      const pokemon = await pokemonModels.addToMyPokemon(id_pokemons, id_user);
+      const pokemon = await pokemonModels.addToMyPokemon(id_pokemons, user.userId);
       res.json({
         message: 'Add To My Pokemons Success',
         data: pokemon
@@ -182,5 +207,7 @@ module.exports = {
     getAllMyPokemons,
     addToMyPokemons,
     deleteMyPokemons,
-    findAddMypokemon
+    findAddMypokemon,
+    getAllPokemonsIdUser
+
 };
