@@ -29,7 +29,7 @@ const loginUsers = async (req, res) => {
     }
 
     // Jika verifikasi berhasil, buat token otentikasi menggunakan jsonwebtoken
-    const token = jwt.sign({ userId: user.id }, 'secret-key', { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.id }, 'tes1234', { expiresIn: '1h' });
 
     // Kirim token sebagai respons
     res.json({ token,
